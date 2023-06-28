@@ -1,12 +1,25 @@
 .table {
+  .table-rating {
+    display: flex;
+    justify-content: space-evenly;
+    line-height: 18px;
+  .adc357e4f1 {
+    fill: #febb02;
+    height: 14px;
+  }
+  .b6dc9a9e69 svg {
+    display: inline-block;
+    height: 100%;
+    vertical-align: top;
+}}
   .cellWrapper {
     display: flex;
     align-items: center;
 
     .image {
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
+      width: 130px;
+      height: 130px;
+      border-radius: 2px;
       margin-right: 10px;
       object-fit: cover;
     }
