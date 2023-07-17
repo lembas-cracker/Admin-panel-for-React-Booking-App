@@ -33,7 +33,7 @@ const NewHotel = () => {
           const data = new FormData();
           data.append("file", file);
           data.append("upload_preset", "upload");
-          const uploadResponse = await axios.post("https://api.cloudinary.com/v1_1/senia/image/upload", data);
+          const uploadResponse = await axios.post("https://api.cloudinary.com/v1_1/senia/image/upload/images", data);
           const { url } = uploadResponse.data;
 
           return url;
