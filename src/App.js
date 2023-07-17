@@ -4,7 +4,7 @@ import List from "./pages/List";
 import SingleHotel from "./pages/SingleHotel";
 import SingleRoom from "./pages/SingleRoom";
 import NewUser from "./pages/NewUser";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { HashRouter, Routes, Route, Navigate } from "react-router-dom";
 import { hotelInputs, userInputs } from "./formSource";
 import "./style/dark.scss";
 import { useContext } from "react";
@@ -31,7 +31,7 @@ function App() {
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <div className={darkMode ? "app dark" : "app"}>
-        <BrowserRouter>
+        <HashRouter>
           <Routes>
             <Route path="/">
               <Route path="login" element={<Login />} />
@@ -115,7 +115,7 @@ function App() {
               </Route>
             </Route>
           </Routes>
-        </BrowserRouter>
+        </HashRouter>
       </div>
     </LocalizationProvider>
   );
