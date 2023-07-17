@@ -1,7 +1,7 @@
 {
   "name": "ksushadmin",
   "version": "0.1.0",
-  "homepage": "https://lembas-cracker.github.io/admin-panel",
+  "homepage": "https://lembas-cracker.github.io/Admin-panel-for-React-Booking-App",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.8.1",
