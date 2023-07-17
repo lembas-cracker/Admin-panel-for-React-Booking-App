@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/admin-panel/static/css/main.1727f744.css",
-    "main.js": "/admin-panel/static/js/main.2dee40f4.js",
-    "index.html": "/admin-panel/index.html",
-    "main.1727f744.css.map": "/admin-panel/static/css/main.1727f744.css.map",
-    "main.2dee40f4.js.map": "/admin-panel/static/js/main.2dee40f4.js.map"
+    "main.css": "/Admin-panel-for-React-Booking-App/static/css/main.1727f744.css",
+    "main.js": "/Admin-panel-for-React-Booking-App/static/js/main.2dee40f4.js",
+    "index.html": "/Admin-panel-for-React-Booking-App/index.html",
+    "main.1727f744.css.map": "/Admin-panel-for-React-Booking-App/static/css/main.1727f744.css.map",
+    "main.2dee40f4.js.map": "/Admin-panel-for-React-Booking-App/static/js/main.2dee40f4.js.map"
   },
   "entrypoints": [
     "static/css/main.1727f744.css",
