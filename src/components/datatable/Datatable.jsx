@@ -6,8 +6,6 @@ import { API_BASE_URL } from "../../api";
 import useFetch from "../../useFetchHook";
 import axios from "axios";
 
-console.log("DataGrid:", DataGrid);
-
 const Datatable = ({ columns, showViewButton }) => {
   const location = useLocation();
   const path = location.pathname.split("/")[1];
@@ -17,6 +15,8 @@ const Datatable = ({ columns, showViewButton }) => {
   useEffect(() => {
     setList(data);
   }, [data]);
+
+  console.log(list);
 
   const handleDelete = async (id) => {
     try {

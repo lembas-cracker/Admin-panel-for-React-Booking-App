@@ -91,7 +91,12 @@ const SingleHotel = () => {
             <div className="item-photos">
               <FontAwesomeIcon icon={faCircleArrowLeft} className="arrow" onClick={() => handleMove("l")} />
               <div className="slider-wrapper">
-                <img src={data.photos[slideNumber]} onClick={(d) => handleMove(d)} alt="" className="item-images" />
+                <img
+                  src={data.photos[slideNumber].fullImage}
+                  onClick={(d) => handleMove(d)}
+                  alt=""
+                  className="item-images"
+                />
               </div>
               <FontAwesomeIcon icon={faCircleArrowRight} className="arrow" onClick={() => handleMove("r")} />
             </div>

@@ -27,7 +27,7 @@ const List = () => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {data.map((hotel, i) => (
+          {data?.map((hotel, i) => (
             <TableRow key={i}>
               <TableCell className="tableCell">
                 <div className="table-rating">
@@ -41,7 +41,7 @@ const List = () => {
               </TableCell>
               <TableCell className="tableCell">
                 <div className="cellWrapper">
-                  <img src={hotel.photos[0]} alt="" className="image" />
+                  <img src={hotel.photos[0].fullImage} alt="" className="image" />
                   {hotel.name}
                 </div>
               </TableCell>
