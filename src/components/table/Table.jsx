@@ -18,12 +18,12 @@ const List = () => {
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell className="tableCell">Rating</TableCell>
-            <TableCell className="tableCell">Hotel</TableCell>
-            <TableCell className="tableCell">Description</TableCell>
-            <TableCell className="tableCell">Location</TableCell>
-            <TableCell className="tableCell">Title</TableCell>
-            <TableCell className="tableCell">Cheapest Price</TableCell>
+            <TableCell className="tableCell tableCell_title">Rating</TableCell>
+            <TableCell className="tableCell tableCell_title">Hotel</TableCell>
+            <TableCell className="tableCell tableCell_title">Description</TableCell>
+            <TableCell className="tableCell tableCell_title">Location</TableCell>
+            <TableCell className="tableCell tableCell_title">Title</TableCell>
+            <TableCell className="tableCell tableCell_title">Cheapest Price</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -39,14 +39,14 @@ const List = () => {
                   {hotel.rating}
                 </div>
               </TableCell>
-              <TableCell className="tableCell">
+              <TableCell className="tableCell tableCell_hotel">
                 <div className="cellWrapper">
                   <img src={hotel.photos[0].fullImage} alt="" className="image" />
                   {hotel.name}
                 </div>
               </TableCell>
-              <TableCell className="tableCell">{hotel.description}</TableCell>
-              <TableCell className="tableCell">{hotel.city}</TableCell>
+              <TableCell className="tableCell tableCell_description">{hotel.description}</TableCell>
+              <TableCell className="tableCell tableCell_location">{hotel.city}</TableCell>
               <TableCell className="tableCell">{hotel.title}</TableCell>
               <TableCell className="tableCell">{hotel.cheapestPrice}</TableCell>
               <TableCell className="tableCell"></TableCell>
