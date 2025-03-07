@@ -2,17 +2,40 @@ import "./new-hotel.scss";
 import Sidebar from "../components/sidebar/Sidebar";
 import Navbar from "../components/navbar/Navbar";
 import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { hotelInputs } from "../formSource";
 import useFetch from "../useFetchHook";
 import { API_BASE_URL } from "../api";
 import axios from "axios";
+import { lightGreen } from "@mui/material/colors";
+import { useNavigate } from "react-router-dom";
+import { Box, Button, CircularProgress } from "@mui/material";
 
 const NewHotel = () => {
   const [files, setFiles] = useState("");
   const [info, setInfo] = useState({});
   const [rooms, setRooms] = useState([]);
+  const [formLoading, setFormLoading] = useState(false);
   const { data, loading, error } = useFetch(API_BASE_URL + "/rooms");
+  const navigate = useNavigate();
+
+  const [success, setSuccess] = useState(false);
+  const timer = useRef(undefined);
+
+  const buttonSx = {
+    ...(success && {
+      bgcolor: lightGreen[500],
+      "&:hover": {
+        bgcolor: lightGreen[700],
+      },
+    }),
+  };
+
+  useEffect(() => {
+    return () => {
+      clearTimeout(timer.current);
+    };
+  }, []);
 
   const handleChange = (e) => {
     setInfo((prev) => ({ ...prev, [e.target.id]: e.target.value })); //setting user information from user.model
@@ -23,17 +46,25 @@ const NewHotel = () => {
     setRooms(value);
   };
 
-  console.log(files);
-
   const handleClick = async (e) => {
     e.preventDefault();
+
+    if (!formLoading) {
+      setSuccess(false);
+      setFormLoading(true);
+      timer.current = setTimeout(() => {
+        setSuccess(true);
+        setFormLoading(false);
+      }, 8000);
+    }
+
     try {
       const list = await Promise.all(
         Object.values(files).map(async (file) => {
           const data = new FormData();
           data.append("file", file);
           data.append("upload_preset", "upload");
-          const uploadResponse = await axios.post("https://api.cloudinary.com/v1_1/senia/image/upload/images", data);
+          const uploadResponse = await axios.post("https://api.cloudinary.com/v1_1/senia/image/upload", data);
           const { url } = uploadResponse.data;
 
           return url;
@@ -48,7 +79,9 @@ const NewHotel = () => {
 
       await axios.post(API_BASE_URL + "/hotels", newHotel, { withCredentials: true });
       alert("Hotel has been created!");
+      navigate("/hotels");
     } catch (error) {
+      alert("Something went wrong! Hotel has not been created. Try again later.");
       console.log(error);
     }
   };
@@ -114,9 +147,29 @@ const NewHotel = () => {
                 </select>
               </div>
             </form>
-            <div className="button-cont">
-              <button onClick={handleClick}>Send</button>
-            </div>
+            <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
+              <Button
+                variant="contained"
+                sx={{ ...buttonSx, position: "relative" }}
+                disabled={loading}
+                onClick={handleClick}
+              >
+                Send
+                {formLoading && (
+                  <CircularProgress
+                    size={30}
+                    sx={{
+                      color: lightGreen[500],
+                      position: "absolute",
+                      top: "50%",
+                      left: "50%",
+                      marginTop: "-12px",
+                      marginLeft: "-12px",
+                    }}
+                  />
+                )}
+              </Button>
+            </Box>
           </div>
         </div>
       </div>

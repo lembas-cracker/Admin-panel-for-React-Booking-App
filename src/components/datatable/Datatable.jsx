@@ -16,8 +16,6 @@ const Datatable = ({ columns, showViewButton }) => {
     setList(data);
   }, [data]);
 
-  console.log(list);
-
   const handleDelete = async (id) => {
     try {
       await axios.delete(API_BASE_URL + `/${path}/${id}`, { withCredentials: true });

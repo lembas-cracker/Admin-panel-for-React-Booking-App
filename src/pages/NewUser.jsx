@@ -2,13 +2,36 @@ import "./new-user.scss";
 import Sidebar from "../components/sidebar/Sidebar";
 import Navbar from "../components/navbar/Navbar";
 import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { API_BASE_URL } from "../api";
+import { useNavigate } from "react-router-dom";
+import { Box, Button, CircularProgress } from "@mui/material";
+import { lightGreen } from "@mui/material/colors";
 
 const NewUser = ({ inputs, title }) => {
   const [file, setFile] = useState("");
   const [info, setInfo] = useState({});
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+
+  const [success, setSuccess] = useState(false);
+  const timer = useRef(undefined);
+
+  const buttonSx = {
+    ...(success && {
+      bgcolor: lightGreen[500],
+      "&:hover": {
+        bgcolor: lightGreen[700],
+      },
+    }),
+  };
+
+  useEffect(() => {
+    return () => {
+      clearTimeout(timer.current);
+    };
+  }, []);
 
   const handleChange = (e) => {
     setInfo((prev) => ({ ...prev, [e.target.id]: e.target.value })); //setting user information from user.model
@@ -16,6 +39,14 @@ const NewUser = ({ inputs, title }) => {
 
   const handleClick = async (e) => {
     e.preventDefault();
+    if (!loading) {
+      setSuccess(false);
+      setLoading(true);
+      timer.current = setTimeout(() => {
+        setSuccess(true);
+        setLoading(false);
+      }, 8000);
+    }
     const data = new FormData();
     data.append("file", file);
     data.append("upload_preset", "upload");
@@ -31,7 +62,9 @@ const NewUser = ({ inputs, title }) => {
 
       await axios.post(API_BASE_URL + "/auth/register", newUser);
       alert("User has been created!");
+      navigate("/users");
     } catch (error) {
+      alert("Something went wrong! User has not been created. Try again later.");
       console.log(error);
     }
   };
@@ -68,7 +101,25 @@ const NewUser = ({ inputs, title }) => {
                   <input onChange={handleChange} id={input.id} type={input.type} placeholder={input.placeholder} />
                 </div>
               ))}
-              <button onClick={handleClick}>Send</button>
+
+              <Box sx={{ m: 1, position: "relative" }}>
+                <Button variant="contained" sx={buttonSx} disabled={loading} onClick={handleClick}>
+                  Send
+                </Button>
+                {loading && (
+                  <CircularProgress
+                    size={30}
+                    sx={{
+                      color: lightGreen[500],
+                      position: "absolute",
+                      top: "50%",
+                      left: "50%",
+                      marginTop: "-12px",
+                      marginLeft: "-12px",
+                    }}
+                  />
+                )}
+              </Box>
             </form>
           </div>
         </div>
