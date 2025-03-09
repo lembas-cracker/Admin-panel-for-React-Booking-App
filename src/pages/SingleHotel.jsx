@@ -56,7 +56,7 @@ const SingleHotel = () => {
                     <span className="itemKey">Distance:</span>
                     <span className="itemValue">{data.distance}</span>
                   </div>
-                  <div className="detailItem">
+                  <div className="detailItem description">
                     <span className="itemKey">Description:</span>
                     <span className="itemValue">{data.description}</span>
                   </div>
@@ -87,7 +87,7 @@ const SingleHotel = () => {
         {loading ? (
           "Loading Photos..."
         ) : (
-          <div className="bottom">
+          <div className="bottom_photos">
             <div className="item-photos">
               <FontAwesomeIcon icon={faCircleArrowLeft} className="arrow" onClick={() => handleMove("l")} />
               <div className="slider-wrapper">
@@ -102,8 +102,8 @@ const SingleHotel = () => {
             </div>
           </div>
         )}
-        <div className="bottom">
-          <h1 className="title">Best Hotels</h1>
+        <div className="bottom_hotels">
+          <h1 className="title hotels_title">Best Hotels</h1>
           <List />
         </div>
       </div>

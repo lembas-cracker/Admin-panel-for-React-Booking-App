@@ -88,7 +88,6 @@ const SingleRoom = () => {
                     <span className="itemValue">{data.price}</span>
                   </div>
                   <div className="detailItem">
-                    <span className="itemKey">Room Numbers:</span>
                     <span className="itemValue dates-item" onClick={() => setOpenCalendar(!openCalendar)}>
                       See Unavailable Dates <span style={{ fontSize: "10px", verticalAlign: "1px" }}>&#9660;</span>
                     </span>
