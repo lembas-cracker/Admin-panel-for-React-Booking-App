@@ -8,8 +8,10 @@ import { API_BASE_URL } from "../api";
 import { useNavigate } from "react-router-dom";
 import { Box, Button, CircularProgress } from "@mui/material";
 import { lightGreen } from "@mui/material/colors";
+import { useSidebar } from "../context/SidebarContext";
 
 const NewUser = ({ inputs, title }) => {
+  const { isSidebarOpen } = useSidebar();
   const [file, setFile] = useState("");
   const [info, setInfo] = useState({});
   const [loading, setLoading] = useState(false);
@@ -72,7 +74,7 @@ const NewUser = ({ inputs, title }) => {
   return (
     <div className="new">
       <Sidebar />
-      <div className="newContainer">
+      <div className={`newContainer ${isSidebarOpen ? "sidebar-open" : ""}`}>
         <Navbar />
         <div className="top">
           <h1>{title}</h1>
@@ -102,7 +104,7 @@ const NewUser = ({ inputs, title }) => {
                 </div>
               ))}
 
-              <Box sx={{ m: 1, position: "relative" }}>
+              <Box sx={{ m: 1, position: "relative" }} className="formButton">
                 <Button variant="contained" sx={buttonSx} disabled={loading} onClick={handleClick}>
                   Send
                 </Button>

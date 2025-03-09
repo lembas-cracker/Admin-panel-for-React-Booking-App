@@ -1,10 +1,15 @@
 .new {
   width: 100%;
   display: flex;
-
+  
   .newContainer {
     flex: 6;
-
+    /*@media (max-width: 1024px) {
+      &.sidebar-open {
+        background-color: rgb(128, 128, 128, 0.5);
+      }
+    }*/
+    
     .top,
     .bottom {
       -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
@@ -12,6 +17,11 @@
       padding: 10px;
       margin: 20px;
       display: flex;
+
+      @media (max-width: 1024px) {
+      flex-direction: column;
+      text-align: start;
+    }
 
       h1 {
         color: lightgray;
@@ -21,6 +31,12 @@
       .left {
         flex: 1;
         text-align: center;
+
+        @media (max-width: 1024px) {
+          text-align: start;
+          padding: 0 20px;
+        }
+
 
         img {
           width: 100px;
@@ -39,8 +55,21 @@
           gap: 30px;
           justify-content: space-between;
 
+          @media (max-width: 1024px) {
+            flex-direction: column;
+
+            .css-1tfqlfq {
+              margin: 0;
+            }
+          }
+
+
           .formInput {
             width: 40%;
+           
+            @media (max-width: 1024px) {
+            min-width: 100%;
+          }
 
             label {
               display: flex;
@@ -60,16 +89,6 @@
             }
           }
 
-          button {
-            width: 150px;
-            padding: 10px;
-            border: none;
-            background-color: teal;
-            color: white;
-            font-weight: bold;
-            cursor: pointer;
-            margin-top: 10px;
-          }
         }
       }
     }
