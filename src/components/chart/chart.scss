@@ -5,6 +5,10 @@
   padding: 10px;
   color: gray;
 
+  @media (max-width: 1024px) {
+    flex: 1;
+  }
+
   .title {
     margin-bottom: 20px;
   }

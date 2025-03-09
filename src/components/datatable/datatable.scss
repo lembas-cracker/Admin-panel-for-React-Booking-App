@@ -1,7 +1,16 @@
 .datatable {
   height: 600px;
   padding: 20px;
-  
+
+
+  @media (max-width: 1020px) {
+    .MuiDataGrid-columnHeader[data-field="_id"] {
+      display: none;
+    }
+  .MuiDataGrid-cell[data-colindex="1"] {
+    display: none;
+  }
+}
   .datatableTitle{
     width: 100%;
     font-size: 24px;
