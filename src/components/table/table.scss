@@ -1,8 +1,16 @@
 .table {
+  table-layout: fixed;
+  width: 100%;
+  @media (max-width: 1024px) {
+    overflow-y: scroll;
+    max-height: 100vh;
+  }
   .table-rating {
     display: flex;
     justify-content: space-evenly;
     line-height: 18px;
+
+
   .adc357e4f1 {
     fill: #febb02;
     height: 14px;
@@ -15,12 +23,23 @@
 .tableCell_title, .tableCell_location {
   font-weight: 700;
 }
+.tableCell_hotelTitle {
+  font-weight: 500;
+  color: gray;
+  text-align: left;
+
+
+}
 
 
   .cellWrapper {
     display: flex;
     flex-direction: column-reverse;
     align-items: flex-start;
+    width: 192px;
+    min-height: 150px;
+    height: auto;
+    padding: 10px 0 10px 0;
     font-weight: 700;
     font-size: 16px;
     gap: 16px;
@@ -30,6 +49,7 @@
       height: 90%;
       border-radius: 2px;
       object-fit: cover;
+
     }
   }
 
@@ -47,3 +67,4 @@
     }
   }
 }
+

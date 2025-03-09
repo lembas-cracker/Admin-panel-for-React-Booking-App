@@ -8,10 +8,12 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import useFetch from "../../useFetchHook";
 import { API_BASE_URL } from "../../api";
-import axios from "axios";
+import ImageComponent from "../ImageComponent";
+import { useTheme } from "@mui/material/styles";
 
 const List = () => {
   const { data, loading, error } = useFetch(API_BASE_URL + "/hotels/rating");
+  const theme = useTheme();
 
   return (
     <TableContainer component={Paper} className="table">
@@ -28,7 +30,15 @@ const List = () => {
         </TableHead>
         <TableBody>
           {data?.map((hotel, i) => (
-            <TableRow key={i}>
+            <TableRow
+              key={i}
+              className="tableRow"
+              sx={{
+                [`@media (max-width: ${theme.breakpoints.values.md}px)`]: {
+                  borderTop: "1px solid rgba(224, 224, 224, 1)",
+                },
+              }}
+            >
               <TableCell className="tableCell">
                 <div className="table-rating">
                   <span aria-hidden="true" class="b6dc9a9e69 adc357e4f1 fe621d6382">
@@ -39,15 +49,38 @@ const List = () => {
                   {hotel.rating}
                 </div>
               </TableCell>
-              <TableCell className="tableCell tableCell_hotel">
+              <TableCell eCell className="tableCell tableCell_hotel">
                 <div className="cellWrapper">
-                  <img src={hotel.photos[0].fullImage} alt="" className="image" />
+                  <ImageComponent
+                    src={hotel.photos[0].fullImage}
+                    hash={hotel.photos[0].previewImage}
+                    className="image"
+                  />
                   {hotel.name}
                 </div>
               </TableCell>
-              <TableCell className="tableCell tableCell_description">{hotel.description}</TableCell>
+              <TableCell
+                className="tableCell tableCell_description"
+                sx={{
+                  [`@media (max-width: ${theme.breakpoints.values.md}px)`]: {
+                    width: "250px",
+                    maxWidth: "250px",
+                    whiteSpace: "normal",
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
+                    display: "-webkit-box",
+                    WebkitLineClamp: 8,
+                    LineClamp: 8,
+                    WebkitBoxOrient: "vertical",
+                    BoxOrient: "vertical",
+                    borderBottom: "none",
+                  },
+                }}
+              >
+                {hotel.description}
+              </TableCell>
               <TableCell className="tableCell tableCell_location">{hotel.city}</TableCell>
-              <TableCell className="tableCell">{hotel.title}</TableCell>
+              <TableCell className="tableCell tableCell_hotelTitle">“ {hotel.title} ”</TableCell>
               <TableCell className="tableCell">{hotel.cheapestPrice}</TableCell>
               <TableCell className="tableCell"></TableCell>
             </TableRow>
