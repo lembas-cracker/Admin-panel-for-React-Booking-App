@@ -5,7 +5,7 @@ import SingleHotel from "./pages/SingleHotel";
 import SingleRoom from "./pages/SingleRoom";
 import NewUser from "./pages/NewUser";
 import { HashRouter, Routes, Route, Navigate } from "react-router-dom";
-import { hotelInputs, userInputs } from "./formSource";
+import { userInputs } from "./formSource";
 import "./style/dark.scss";
 import { useContext } from "react";
 import { DarkModeContext } from "./context/darkModeContext";

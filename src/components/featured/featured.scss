@@ -4,6 +4,10 @@
   box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
   padding: 10px;
 
+  @media (max-width: 1024px) {
+    flex-direction: column;
+  }
+
   .top {
     display: flex;
     align-items: center;
