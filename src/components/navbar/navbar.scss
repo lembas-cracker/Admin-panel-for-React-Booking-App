@@ -5,39 +5,60 @@
   align-items: center;
   font-size: 14px;
   color: #555;
+  z-index: 1001;
+
+
+  .hamburger {
+    cursor: pointer;
+    padding: 5px 0 0 20px;
+
+    @media (min-width: 1024px) {
+      display: none;
+    }
+  }
+
+  .search {
+    display: flex;
+    align-items: center;
+    border: 0.5px solid lightgray;
+    padding: 3px;
+    margin-left: 20px;
+
+    input {
+      border: none;
+      outline: none;
+      background: transparent;
+
+      &::placeholder {
+        font-size: 12px;
+      }
+    }
+    
+    @media (max-width: 1024px) {
+      display: none;
+    }
+  }
 
   .wrapper {
     width: 100%;
     padding: 20px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-end;
 
-    .search {
-      display: flex;
-      align-items: center;
-      border: 0.5px solid lightgray;
-      padding: 3px;
-
-      input {
-        border: none;
-        outline: none;
-        background: transparent;
-
-        &::placeholder {
-          font-size: 12px;
-        }
-      }
-    }
 
     .items {
       display: flex;
       align-items: center;
+      gap: 2em;
+
+      @media (max-width: 1024px) {
+        gap: 1em;
+      }
 
       .item {
         display: flex;
         align-items: center;
-        margin-right: 20px;
         position: relative;
 
         .icon {

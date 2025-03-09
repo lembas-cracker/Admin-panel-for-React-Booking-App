@@ -13,86 +13,94 @@ import PsychologyOutlinedIcon from "@mui/icons-material/PsychologyOutlined";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import { Link } from "react-router-dom";
 import { DarkModeContext } from "../../context/darkModeContext";
-import { useContext } from "react";
+import { useContext, useRef } from "react";
+import { useSidebar } from "../../context/SidebarContext";
+import { useOutside } from "../../useOutsideHook";
 
 const Sidebar = () => {
   const { dispatch } = useContext(DarkModeContext);
+  const { isSidebarOpen } = useSidebar();
+  const { toggleSidebar } = useSidebar();
+  const sidebarRef = useRef();
+
+  useOutside(sidebarRef, () => isSidebarOpen && toggleSidebar());
+
   return (
-    <div className="sidebar">
-      <div className="top">
-        <Link to="/" style={{ textDecoration: "none" }}>
+    <div className="sidebar" ref={sidebarRef}>
+      <div className={`sidebar-wrapper ${isSidebarOpen ? "open" : ""}`}>
+        <div className="top">
           <span className="logo">Ksushadmin</span>
-        </Link>
-      </div>
-      <hr />
-      <div className="center">
-        <ul>
-          <p className="title">MAIN</p>
-          <Link to="/" style={{ textDecoration: "none" }}>
+        </div>
+        <hr />
+        <div className="center">
+          <ul>
+            <p className="title">MAIN</p>
+            <Link to="/" style={{ textDecoration: "none" }}>
+              <li>
+                <DashboardIcon className="icon" />
+                <span>Dashboard</span>
+              </li>
+            </Link>
+            <p className="title">LISTS</p>
+            <Link to="/users" style={{ textDecoration: "none" }}>
+              <li>
+                <PersonOutlineIcon className="icon" />
+                <span>Users</span>
+              </li>
+            </Link>
+            <Link to="/hotels" style={{ textDecoration: "none" }}>
+              <li>
+                <StoreIcon className="icon" />
+                <span>Hotels</span>
+              </li>
+            </Link>
+            <Link to="/rooms" style={{ textDecoration: "none" }}>
+              <li>
+                <CreditCardIcon className="icon" />
+                <span>Rooms</span>
+              </li>
+            </Link>
             <li>
-              <DashboardIcon className="icon" />
-              <span>Dashboard</span>
+              <LocalShippingIcon className="icon" />
+              <span>Delivery</span>
             </li>
-          </Link>
-          <p className="title">LISTS</p>
-          <Link to="/users" style={{ textDecoration: "none" }}>
+            <p className="title">USEFUL</p>
             <li>
-              <PersonOutlineIcon className="icon" />
-              <span>Users</span>
+              <InsertChartIcon className="icon" />
+              <span>Stats</span>
             </li>
-          </Link>
-          <Link to="/hotels" style={{ textDecoration: "none" }}>
             <li>
-              <StoreIcon className="icon" />
-              <span>Hotels</span>
+              <NotificationsNoneIcon className="icon" />
+              <span>Notifications</span>
             </li>
-          </Link>
-          <Link to="/rooms" style={{ textDecoration: "none" }}>
+            <p className="title">SERVICE</p>
             <li>
-              <CreditCardIcon className="icon" />
-              <span>Rooms</span>
+              <SettingsSystemDaydreamOutlinedIcon className="icon" />
+              <span>System Health</span>
             </li>
-          </Link>
-          <li>
-            <LocalShippingIcon className="icon" />
-            <span>Delivery</span>
-          </li>
-          <p className="title">USEFUL</p>
-          <li>
-            <InsertChartIcon className="icon" />
-            <span>Stats</span>
-          </li>
-          <li>
-            <NotificationsNoneIcon className="icon" />
-            <span>Notifications</span>
-          </li>
-          <p className="title">SERVICE</p>
-          <li>
-            <SettingsSystemDaydreamOutlinedIcon className="icon" />
-            <span>System Health</span>
-          </li>
-          <li>
-            <PsychologyOutlinedIcon className="icon" />
-            <span>Logs</span>
-          </li>
-          <li>
-            <SettingsApplicationsIcon className="icon" />
-            <span>Settings</span>
-          </li>
-          <p className="title">USER</p>
-          <li>
-            <AccountCircleOutlinedIcon className="icon" />
-            <span>Profile</span>
-          </li>
-          <li>
-            <ExitToAppIcon className="icon" />
-            <span>Logout</span>
-          </li>
-        </ul>
-      </div>
-      <div className="bottom-mode">
-        <div className="colorOption" onClick={() => dispatch({ type: "LIGHT" })}></div>
-        <div className="colorOption" onClick={() => dispatch({ type: "DARK" })}></div>
+            <li>
+              <PsychologyOutlinedIcon className="icon" />
+              <span>Logs</span>
+            </li>
+            <li>
+              <SettingsApplicationsIcon className="icon" />
+              <span>Settings</span>
+            </li>
+            <p className="title">USER</p>
+            <li>
+              <AccountCircleOutlinedIcon className="icon" />
+              <span>Profile</span>
+            </li>
+            <li>
+              <ExitToAppIcon className="icon" />
+              <span>Logout</span>
+            </li>
+          </ul>
+        </div>
+        <div className="bottom-mode">
+          <div className="colorOption" onClick={() => dispatch({ type: "LIGHT" })}></div>
+          <div className="colorOption" onClick={() => dispatch({ type: "DARK" })}></div>
+        </div>
       </div>
     </div>
   );
