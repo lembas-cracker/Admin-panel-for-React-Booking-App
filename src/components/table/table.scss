@@ -28,13 +28,12 @@
   color: gray;
   text-align: left;
 
-
 }
 
 
   .cellWrapper {
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: column;
     align-items: flex-start;
     width: 192px;
     min-height: 150px;
@@ -49,7 +48,8 @@
       height: 90%;
       border-radius: 2px;
       object-fit: cover;
-
+      -webkit-box-shadow: 2px 4px 7px 1px rgba(0, 0, 0, 0.47);
+  box-shadow: 2px 4px 7px 1px rgba(201, 201, 201, 0.47);
     }
   }
 

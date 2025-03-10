@@ -49,14 +49,14 @@ const List = () => {
                   {hotel.rating}
                 </div>
               </TableCell>
-              <TableCell eCell className="tableCell tableCell_hotel">
+              <TableCell className="tableCell tableCell_hotel">
                 <div className="cellWrapper">
+                  <span className="hotelName">{hotel.name}</span>
                   <ImageComponent
                     src={hotel.photos[0].fullImage}
                     hash={hotel.photos[0].previewImage}
                     className="image"
                   />
-                  {hotel.name}
                 </div>
               </TableCell>
               <TableCell
