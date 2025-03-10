@@ -11,19 +11,26 @@ import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
 import SettingsSystemDaydreamOutlinedIcon from "@mui/icons-material/SettingsSystemDaydreamOutlined";
 import PsychologyOutlinedIcon from "@mui/icons-material/PsychologyOutlined";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { DarkModeContext } from "../../context/darkModeContext";
+import { AuthContext } from "../../context/AuthContext";
 import { useContext, useRef } from "react";
 import { useSidebar } from "../../context/SidebarContext";
 import { useOutside } from "../../useOutsideHook";
 
 const Sidebar = () => {
-  const { dispatch } = useContext(DarkModeContext);
+  const { user, dispatch } = useContext(AuthContext);
   const { isSidebarOpen } = useSidebar();
   const { toggleSidebar } = useSidebar();
   const sidebarRef = useRef();
+  const navigate = useNavigate();
 
   useOutside(sidebarRef, () => isSidebarOpen && toggleSidebar());
+
+  const handleLogout = () => {
+    dispatch({ type: "LOGOUT" });
+    navigate("/login");
+  };
 
   return (
     <div className="sidebar" ref={sidebarRef}>
@@ -91,15 +98,11 @@ const Sidebar = () => {
               <AccountCircleOutlinedIcon className="icon" />
               <span>Profile</span>
             </li>
-            <li>
+            <li onClick={handleLogout}>
               <ExitToAppIcon className="icon" />
               <span>Logout</span>
             </li>
           </ul>
-        </div>
-        <div className="bottom-mode">
-          <div className="colorOption" onClick={() => dispatch({ type: "LIGHT" })}></div>
-          <div className="colorOption" onClick={() => dispatch({ type: "DARK" })}></div>
         </div>
       </div>
     </div>

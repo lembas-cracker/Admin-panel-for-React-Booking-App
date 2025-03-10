@@ -4,10 +4,8 @@
   border-right: 0.5px solid rgb(230, 227, 227);
   min-height: 100vh;
   background-color: white;
-
-  @media (max-width: 1020px) {
-    flex: none;
-  }
+  flex: none;
+ 
 
 .sidebar-wrapper {
   flex: 1 0 auto; 
