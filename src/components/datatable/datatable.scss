@@ -11,6 +11,12 @@
     display: none;
   }
 }
+
+.MuiDataGrid-row[data-rowindex="6"] {
+  .deleteButton {
+    display: none;
+  }
+}
   .datatableTitle{
     width: 100%;
     font-size: 24px;
